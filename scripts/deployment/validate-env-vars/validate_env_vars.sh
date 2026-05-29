@@ -44,7 +44,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;
@@ -71,7 +71,7 @@ main() {
     return 2
   fi
 
-  IFS=',' read -r -a required_vars <<< "$vars_csv"
+  IFS=',' read -r -a required_vars <<<"$vars_csv"
 
   if [[ "${#required_vars[@]}" -eq 0 ]]; then
     printf 'Error: --vars must include at least one variable name.\n' >&2

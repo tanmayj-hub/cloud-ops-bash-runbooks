@@ -42,8 +42,8 @@ print_process_section() {
   printf '\n%s\n' "$title"
   printf '%s\n' '------------------------------'
   ps --cols 120 -eo pid,ppid,user,comm,%cpu,%mem --sort="$sort_key" \
-    2> >(grep -v 'screen size is bogus' >&2) \
-    | head -n "$((limit + 1))"
+    2> >(grep -v 'screen size is bogus' >&2) |
+    head -n "$((limit + 1))"
 }
 
 main() {
@@ -51,7 +51,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;

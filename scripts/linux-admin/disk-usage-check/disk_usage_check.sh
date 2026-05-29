@@ -38,7 +38,7 @@ validate_threshold() {
     return 2
   fi
 
-  if (( threshold < 1 || threshold > 100 )); then
+  if ((threshold < 1 || threshold > 100)); then
     printf 'Error: threshold must be between 1 and 100.\n' >&2
     return 2
   fi
@@ -50,7 +50,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;
@@ -85,7 +85,7 @@ main() {
 
     printf '%-28s %-8s %-8s %-8s %-8s %s\n' "$filesystem" "$size" "$used" "$available" "$use_percent" "$mount_point"
 
-    if (( usage_number > threshold )); then
+    if ((usage_number > threshold)); then
       warning_found=true
     fi
   done < <(df -hP | awk 'NR > 1')

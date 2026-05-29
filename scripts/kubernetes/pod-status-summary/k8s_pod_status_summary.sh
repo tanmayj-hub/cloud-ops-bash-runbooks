@@ -55,7 +55,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;
@@ -93,8 +93,8 @@ main() {
     return 2
   fi
 
-  non_running_pods="$(kubectl get pods --namespace "$namespace" --no-headers 2>/dev/null \
-    | awk '$3 != "Running" && $3 != "Completed"')"
+  non_running_pods="$(kubectl get pods --namespace "$namespace" --no-headers 2>/dev/null |
+    awk '$3 != "Running" && $3 != "Completed"')"
 
   printf '\nPods Not Running or Completed\n'
   printf '%s\n' '------------------------------'

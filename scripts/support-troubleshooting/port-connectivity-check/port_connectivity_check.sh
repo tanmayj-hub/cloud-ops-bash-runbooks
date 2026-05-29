@@ -41,7 +41,7 @@ validate_port() {
     return 2
   fi
 
-  if (( port < 1 || port > 65535 )); then
+  if ((port < 1 || port > 65535)); then
     printf 'Error: port must be between 1 and 65535.\n' >&2
     return 2
   fi
@@ -67,7 +67,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;

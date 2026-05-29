@@ -40,7 +40,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;
@@ -80,7 +80,7 @@ main() {
     --bucket "$bucket_name" \
     --query 'PublicAccessBlockConfiguration' \
     --output table \
-    2> "$error_file"
+    2>"$error_file"
   command_status=$?
   set -e
 

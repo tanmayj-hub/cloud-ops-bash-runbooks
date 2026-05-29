@@ -48,7 +48,7 @@ write_command_output() {
     printf ' %q' "$@"
     printf '\n\n'
     "$@"
-  } > "$output_file" 2>&1
+  } >"$output_file" 2>&1
 }
 
 write_memory_report() {
@@ -60,9 +60,9 @@ write_memory_report() {
     {
       printf '$ cat /proc/meminfo\n\n'
       cat /proc/meminfo
-    } > "$output_file"
+    } >"$output_file"
   else
-    printf 'Memory information is not available on this system.\n' > "$output_file"
+    printf 'Memory information is not available on this system.\n' >"$output_file"
   fi
 }
 
@@ -74,7 +74,7 @@ write_network_report() {
   elif command -v ifconfig >/dev/null 2>&1; then
     write_command_output "$output_file" ifconfig -a
   else
-    printf 'Network interface command not available. Checked for ip and ifconfig.\n' > "$output_file"
+    printf 'Network interface command not available. Checked for ip and ifconfig.\n' >"$output_file"
   fi
 }
 
@@ -84,9 +84,9 @@ write_top_processes_report() {
   {
     printf '$ ps --cols 120 -eo pid,ppid,user,comm,%%cpu,%%mem --sort=-%%cpu | head -n 11\n\n'
     ps --cols 120 -eo pid,ppid,user,comm,%cpu,%mem --sort=-%cpu \
-      2> >(grep -v 'screen size is bogus' >&2) \
-      | head -n 11
-  } > "$output_file"
+      2> >(grep -v 'screen size is bogus' >&2) |
+      head -n 11
+  } >"$output_file"
 }
 
 main() {
@@ -99,7 +99,7 @@ main() {
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;
@@ -159,7 +159,7 @@ main() {
     printf 'Created: %s UTC\n' "$(date -u '+%Y-%m-%d %H:%M:%S')"
     printf 'Host: %s\n' "$hostname_value"
     printf 'Safety: no secrets, private SSH keys, or full environment variables collected.\n'
-  } > "${bundle_dir}/README.txt"
+  } >"${bundle_dir}/README.txt"
 
   tar -czf "$bundle_archive" -C "$output_dir" "$bundle_name"
 

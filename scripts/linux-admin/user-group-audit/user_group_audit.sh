@@ -46,7 +46,7 @@ print_groups() {
 main() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --help|-h)
+      --help | -h)
         usage
         return 0
         ;;
