@@ -1,0 +1,20 @@
+name: shfmt
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  shfmt:
+    name: Check shell formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install shfmt
+        run: sudo apt-get update && sudo apt-get install -y shfmt
+
+      - name: Check formatting
+        run: find scripts -name "*.sh" -print0 | xargs -0 shfmt -d -i 2 -ci

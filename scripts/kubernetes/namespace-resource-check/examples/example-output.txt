@@ -1,0 +1,18 @@
+Kubernetes Namespace Resource Check
+Context: dev-cluster
+Namespace: staging
+
+Deployments
+------------------------------
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+api    3/3     3            3           2d
+
+Pods
+------------------------------
+NAME                 READY   STATUS    RESTARTS   AGE   IP
+api-abc123           1/1     Running   0          2h    10.1.0.12
+
+Services
+------------------------------
+NAME   TYPE        CLUSTER-IP     PORT(S)
+api    ClusterIP   10.96.10.20    80/TCP

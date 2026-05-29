@@ -1,0 +1,13 @@
+Kubernetes Pod Status Summary
+Context: dev-cluster
+Namespace: staging
+
+All Pods
+------------------------------
+NAME                      READY   STATUS             RESTARTS   AGE   IP
+api-6d8f7c8d9f-abc12      1/1     Running            0          2h    10.1.0.12
+worker-7f9c8b7d6d-def34   0/1     CrashLoopBackOff   4          12m   10.1.0.18
+
+Pods Not Running or Completed
+------------------------------
+worker-7f9c8b7d6d-def34   0/1     CrashLoopBackOff   4          12m

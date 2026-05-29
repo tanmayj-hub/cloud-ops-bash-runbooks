@@ -1,0 +1,8 @@
+Deployment Environment Variable Validation
+Variable                         Status
+--------                         ------
+APP_ENV                          SET
+DATABASE_URL                     SET
+API_TOKEN                        SET
+
+OK: all required environment variables are set and non-empty.

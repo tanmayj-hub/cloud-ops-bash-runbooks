@@ -1,0 +1,10 @@
+Docker Container Health Check
+
+Running Containers
+------------------------------
+CONTAINER ID   NAMES     IMAGE          STATUS                  PORTS
+abc123def456   web       nginx:latest   Up 2 hours (healthy)    0.0.0.0:8080->80/tcp
+
+Unhealthy Containers
+------------------------------
+No unhealthy containers found.

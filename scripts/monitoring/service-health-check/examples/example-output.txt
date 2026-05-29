@@ -1,0 +1,4 @@
+Service Health Check
+Service: nginx
+State: active
+OK: nginx is active/running.

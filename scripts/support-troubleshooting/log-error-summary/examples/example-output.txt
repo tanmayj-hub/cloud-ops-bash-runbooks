@@ -1,0 +1,19 @@
+Log Error Summary
+File: ./examples/sample-app.log
+Recent matching lines requested: 5
+
+Counts
+------------------------------
+ERROR:    2
+WARN:     1
+FAILED:   1
+CRITICAL: 1
+TOTAL:    5
+
+Recent Matching Lines
+------------------------------
+12:WARN cache response time exceeded threshold
+18:ERROR database connection retry failed
+22:FAILED payment worker exited unexpectedly
+31:CRITICAL queue depth is above emergency threshold
+40:ERROR request timeout from upstream service

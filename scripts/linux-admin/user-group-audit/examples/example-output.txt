@@ -1,0 +1,17 @@
+User and Group Audit Report
+Source files: /etc/passwd, /etc/group
+
+Current Local Users
+------------------------------
+root                     UID=0        GID=0        HOME=/root
+appuser                  UID=1001     GID=1001     HOME=/home/appuser
+
+Users With Login Shells
+------------------------------
+root                     SHELL=/bin/bash
+appuser                  SHELL=/bin/bash
+
+Local Groups
+------------------------------
+root                     GID=0        MEMBERS=-
+sudo                     GID=27       MEMBERS=appuser

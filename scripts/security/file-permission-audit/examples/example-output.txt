@@ -1,0 +1,22 @@
+File Permission Audit
+Path: ./sample-configs
+Max depth: 2
+Mode: read-only audit
+
+World-Writable Files and Directories
+------------------------------
+-rw-rw-rw- app:app ./sample-configs/debug.conf
+Recommendation: review whether these paths need world-writable permissions.
+
+Setuid or Setgid Files
+------------------------------
+No setuid or setgid files found.
+
+World-Executable Regular Files
+------------------------------
+-rwxr-xr-x app:app ./sample-configs/run-check.sh
+Recommendation: review executable files in application or config directories and remove execute bits only after approval.
+
+Summary Recommendation
+------------------------------
+Review findings with the application owner before changing permissions. This script made no changes.

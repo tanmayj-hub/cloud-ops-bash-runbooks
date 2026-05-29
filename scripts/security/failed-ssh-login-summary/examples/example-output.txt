@@ -1,0 +1,9 @@
+Failed SSH Login Summary
+Log file: ./examples/sample-auth.log
+Failed SSH login lines: 3
+
+Recent Failed SSH Login Lines
+------------------------------
+4:May 29 10:15:22 lab sshd[1201]: Failed password for invalid user test from 203.0.113.10 port 42422 ssh2
+7:May 29 10:17:03 lab sshd[1210]: Invalid user admin from 203.0.113.11 port 42424
+9:May 29 10:18:42 lab sshd[1220]: Failed password for root from 203.0.113.12 port 42426 ssh2

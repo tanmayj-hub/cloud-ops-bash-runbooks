@@ -1,0 +1,3 @@
+CRITICAL disk_usage filesystem=/dev/sdb1 mount=/data usage=92% threshold=85% size=100G used=92G available=8G
+
+OK disk_usage all_filesystems_below_threshold threshold=85%

@@ -1,0 +1,16 @@
+Top Processes Report
+Limit: 3 processes per section
+
+Top CPU Processes
+------------------------------
+    PID    PPID USER     COMMAND         %CPU %MEM
+   1821       1 app      java            47.2 18.4
+   2440    1821 app      worker          22.5  5.1
+    901       1 root     containerd       4.0  1.3
+
+Top Memory Processes
+------------------------------
+    PID    PPID USER     COMMAND         %CPU %MEM
+   1821       1 app      java            47.2 18.4
+   1188       1 mysql    mysqld           2.3 12.9
+   2440    1821 app      worker          22.5  5.1

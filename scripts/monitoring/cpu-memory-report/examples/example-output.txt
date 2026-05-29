@@ -1,0 +1,20 @@
+CPU and Memory Health Report
+
+Load Average
+------------------------------
+1 min: 0.32, 5 min: 0.25, 15 min: 0.18
+
+Memory Usage
+------------------------------
+               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       1.4Gi       5.1Gi        18Mi       1.2Gi       6.0Gi
+
+Top CPU Processes
+------------------------------
+    PID    PPID USER     COMMAND         %CPU %MEM
+   1801       1 app      java            35.2 18.4
+
+Top Memory Processes
+------------------------------
+    PID    PPID USER     COMMAND         %CPU %MEM
+   1801       1 app      java            35.2 18.4

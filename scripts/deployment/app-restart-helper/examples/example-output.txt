@@ -1,0 +1,8 @@
+Application Restart Helper
+Service: nginx
+
+Current status:
+...systemctl status output...
+
+DRY RUN: would run: systemctl restart nginx
+No restart was performed.

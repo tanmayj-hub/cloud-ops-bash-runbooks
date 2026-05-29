@@ -1,0 +1,5 @@
+Port Connectivity Check
+Target: example.com:443
+Timeout: 5 seconds
+
+SUCCESS: example.com:443 is reachable.

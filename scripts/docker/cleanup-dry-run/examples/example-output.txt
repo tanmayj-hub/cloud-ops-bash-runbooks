@@ -1,0 +1,17 @@
+Docker Cleanup Dry Run
+Informational only: no Docker resources will be deleted.
+
+Stopped Containers
+------------------------------
+CONTAINER ID   NAMES       IMAGE          STATUS
+def456abc123   old-web     nginx:latest   Exited (0) 3 days ago
+
+Dangling Images
+------------------------------
+IMAGE ID       REPOSITORY   TAG       SIZE
+aaa111bbb222   <none>       <none>    120MB
+
+Unused Volumes
+------------------------------
+DRIVER    VOLUME NAME
+local     old_app_data

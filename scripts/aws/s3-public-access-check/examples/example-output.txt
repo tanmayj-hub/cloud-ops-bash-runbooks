@@ -1,0 +1,13 @@
+AWS S3 Public Access Check
+Bucket: example-bucket-name
+
+--------------------------------------------------
+|         PublicAccessBlockConfiguration          |
++--------------------------+---------------------+
+| BlockPublicAcls          | True                |
+| BlockPublicPolicy        | True                |
+| IgnorePublicAcls         | True                |
+| RestrictPublicBuckets    | True                |
++--------------------------+---------------------+
+
+OK: public access block configuration was read successfully.

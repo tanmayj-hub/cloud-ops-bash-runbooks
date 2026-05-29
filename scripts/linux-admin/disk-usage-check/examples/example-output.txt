@@ -1,0 +1,9 @@
+Disk Usage Check
+Threshold: 80%
+
+Filesystem                   Size     Used     Avail    Use%     Mounted on
+----------                   ----     ----     -----    ----     ----------
+/dev/sda1                    40G      26G      14G      65%      /
+/dev/sdb1                    100G     88G      12G      88%      /data
+
+WARNING: One or more filesystems are above 80% usage.

@@ -1,0 +1,5 @@
+Backup Before Deploy
+Source: /opt/myapp
+Destination directory: /tmp/deploy-backups
+Backup path: /tmp/deploy-backups/myapp-20260529-153000.tar.gz
+OK: backup created at /tmp/deploy-backups/myapp-20260529-153000.tar.gz

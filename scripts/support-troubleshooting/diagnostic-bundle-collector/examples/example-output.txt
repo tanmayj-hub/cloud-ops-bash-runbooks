@@ -1,0 +1,3 @@
+Diagnostic Bundle Collector
+Bundle folder: ./diagnostic-bundles/diagnostic-bundle-web01-20260529-143000
+Compressed bundle: ./diagnostic-bundles/diagnostic-bundle-web01-20260529-143000.tar.gz
