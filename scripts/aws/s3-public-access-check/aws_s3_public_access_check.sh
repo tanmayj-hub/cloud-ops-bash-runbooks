@@ -9,6 +9,7 @@ usage() {
 Usage: ${SCRIPT_NAME} --bucket <bucket-name> [--help]
 
 Check S3 bucket public access block configuration in read-only mode.
+This is a focused public access block check, not a full bucket exposure review.
 
 Required:
   --bucket <bucket-name>  S3 bucket name to inspect.
@@ -23,6 +24,7 @@ Exit codes:
 
 Safety:
   Read-only only. Does not modify bucket policies or public access settings.
+  Does not review bucket policy, ACLs, access points, or object-level exposure.
 USAGE
 }
 
@@ -72,7 +74,7 @@ main() {
   error_file="$(mktemp)"
   trap 'rm -f "$error_file"' EXIT
 
-  printf 'AWS S3 Public Access Check\n'
+  printf 'AWS S3 Public Access Block Check\n'
   printf 'Bucket: %s\n\n' "$bucket_name"
 
   set +e
@@ -86,6 +88,7 @@ main() {
 
   if [[ "$command_status" -eq 0 ]]; then
     printf '\nOK: public access block configuration was read successfully.\n'
+    printf 'Note: review bucket policy and ACLs separately for a full public access review.\n'
     return 0
   fi
 
@@ -97,6 +100,7 @@ main() {
 
   if grep -qi 'NoSuchPublicAccessBlockConfiguration' "$error_file"; then
     printf 'INFO: no bucket-level public access block configuration was found for bucket %s.\n' "$bucket_name"
+    printf 'Review bucket policy and ACLs separately for a fuller public exposure review.\n'
     printf 'This script did not modify the bucket.\n'
     return 0
   fi

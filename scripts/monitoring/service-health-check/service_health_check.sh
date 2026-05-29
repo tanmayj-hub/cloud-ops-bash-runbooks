@@ -19,12 +19,30 @@ Options:
 Exit codes:
   0  Service is active/running.
   1  Service is inactive/not running.
-  2  Invalid input or systemctl unavailable.
+  2  Invalid input, systemctl unavailable, or systemd unavailable.
 
 Safety:
   Read-only check only. Does not start, stop, restart, reload, or modify
   the service.
 USAGE
+}
+
+require_systemd() {
+  local systemctl_error
+
+  if ! command -v systemctl >/dev/null 2>&1; then
+    printf 'Error: systemctl is unavailable. This system may not use systemd.\n' >&2
+    return 2
+  fi
+
+  if ! systemctl_error="$(systemctl show-environment 2>&1 >/dev/null)"; then
+    printf 'Error: systemctl is installed, but systemd is not available on this system.\n' >&2
+    printf 'This can happen in WSL, containers, or CI runners.\n' >&2
+    if [[ -n "$systemctl_error" ]]; then
+      printf 'systemctl message: %s\n' "$(printf '%s\n' "$systemctl_error" | head -n 1)" >&2
+    fi
+    return 2
+  fi
 }
 
 main() {
@@ -60,8 +78,7 @@ main() {
     return 2
   fi
 
-  if ! command -v systemctl >/dev/null 2>&1; then
-    printf 'Error: systemctl is unavailable. This system may not use systemd.\n' >&2
+  if ! require_systemd; then
     return 2
   fi
 

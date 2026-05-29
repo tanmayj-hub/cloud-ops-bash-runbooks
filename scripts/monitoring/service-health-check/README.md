@@ -12,7 +12,7 @@ Use this script from a terminal, cron job, or simple monitoring workflow to chec
 
 - Bash.
 - `systemctl`.
-- A Linux system that uses systemd.
+- A Linux system where systemd is actually available.
 - Permission to read service status.
 
 ## Usage
@@ -44,11 +44,11 @@ See `examples/example-output.txt` for a sample report.
 
 - `0` - Service is active/running.
 - `1` - Service is inactive/not running.
-- `2` - Invalid input or `systemctl` unavailable.
+- `2` - Invalid input, `systemctl` unavailable, or systemd not available.
 
 ## Troubleshooting
 
-- If `systemctl` is unavailable, the system may not use systemd.
+- If `systemctl` exists but systemd is unavailable, you may be in WSL, a container, or a CI runner.
 - If the service is reported inactive, verify the service name and inspect approved service logs.
 - If a service name differs by distribution, check `systemctl list-units --type=service`.
 

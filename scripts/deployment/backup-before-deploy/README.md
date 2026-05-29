@@ -37,8 +37,8 @@ bash backup_before_deploy.sh --source /opt/myapp --dest /tmp/deploy-backups
 Backup Before Deploy
 Source: /opt/myapp
 Destination directory: /tmp/deploy-backups
-Backup path: /tmp/deploy-backups/myapp-20260529-153000.tar.gz
-OK: backup created at /tmp/deploy-backups/myapp-20260529-153000.tar.gz
+Backup path: /tmp/deploy-backups/myapp-20260529-153000-4127.tar.gz
+OK: backup created at /tmp/deploy-backups/myapp-20260529-153000-4127.tar.gz
 ```
 
 See `examples/example-output.txt` for a sample report.
@@ -52,6 +52,7 @@ See `examples/example-output.txt` for a sample report.
 
 - If the source is rejected, confirm it exists and is a directory.
 - If backup creation fails, confirm the destination can be created and written to.
+- If multiple backups run close together, the script adds process-based collision protection to avoid overwriting an earlier archive.
 - If the archive is unexpectedly large, review what is inside the source directory before deploying.
 
 ## Safety Notes
@@ -60,4 +61,4 @@ This script creates a tar.gz archive only when not in dry-run mode. It does not 
 
 ## Interview Explanation
 
-This script demonstrates a deployment safety step: validate inputs, support dry-run, create a timestamped backup, and avoid destructive behavior.
+This script demonstrates a deployment safety step: validate inputs, support dry-run, create a unique backup name, and avoid destructive behavior.

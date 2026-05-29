@@ -36,7 +36,7 @@ I added Bats tests for important local scripts, including help output, invalid i
 
 ### 5. How does this project relate to cloud or DevOps work?
 
-The scripts map to common operational tasks: EC2 inventory, S3 public access checks, Kubernetes namespace visibility, Docker inspection, deployment prechecks, service restarts, support bundles, and monitoring-style health checks. These are the kinds of checks engineers use before escalating, deploying, or troubleshooting.
+The scripts map to common operational tasks: EC2 inventory, S3 public access block checks, Kubernetes namespace visibility, Docker inspection, deployment prechecks, service restarts, support bundles, and monitoring-style health checks. These are the kinds of checks engineers use before escalating, deploying, or troubleshooting.
 
 ## Why Bash Was Used
 

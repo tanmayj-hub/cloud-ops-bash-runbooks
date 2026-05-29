@@ -6,8 +6,9 @@ setup() {
   TEST_ROOT="${BATS_TEST_TMPDIR}/backup-before-deploy"
   SOURCE_DIR="${TEST_ROOT}/source"
   DEST_DIR="${TEST_ROOT}/backups"
+  MOCK_BIN="${TEST_ROOT}/mock-bin"
   mkdir -p "$SOURCE_DIR"
-  printf 'sample file\n' > "${SOURCE_DIR}/app.txt"
+  printf 'sample file\n' >"${SOURCE_DIR}/app.txt"
 }
 
 @test "backup_before_deploy shows help" {
@@ -40,4 +41,27 @@ setup() {
   [[ "$output" == *"OK: backup created"* ]]
   archive_count="$(find "$DEST_DIR" -maxdepth 1 -name '*.tar.gz' | wc -l)"
   [ "$archive_count" -eq 1 ]
+}
+
+@test "backup_before_deploy creates unique names for two backups in the same second" {
+  mkdir -p "$MOCK_BIN"
+  cat >"${MOCK_BIN}/date" <<'EOF'
+#!/usr/bin/env bash
+printf '20260529-153000\n'
+EOF
+  chmod +x "${MOCK_BIN}/date"
+  export PATH="${MOCK_BIN}:${PATH}"
+
+  run bash "$SCRIPT" --source "$SOURCE_DIR" --dest "$DEST_DIR"
+  [ "$status" -eq 0 ]
+
+  run bash "$SCRIPT" --source "$SOURCE_DIR" --dest "$DEST_DIR"
+  [ "$status" -eq 0 ]
+
+  archive_count="$(find "$DEST_DIR" -maxdepth 1 -name '*.tar.gz' | wc -l)"
+  [ "$archive_count" -eq 2 ]
+
+  archive_list="$(find "$DEST_DIR" -maxdepth 1 -name '*.tar.gz' -printf '%f\n' | sort)"
+  unique_archive_count="$(printf '%s\n' "$archive_list" | uniq | wc -l)"
+  [ "$unique_archive_count" -eq 2 ]
 }

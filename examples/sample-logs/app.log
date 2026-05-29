@@ -1,0 +1,7 @@
+2026-05-29 09:14:21 INFO Starting sample application
+2026-05-29 09:14:23 WARN Cache warmup took longer than expected
+2026-05-29 09:14:29 ERROR Database connection retry failed on attempt 1
+2026-05-29 09:14:33 INFO Retrying database connection
+2026-05-29 09:14:41 CRITICAL Payment worker stopped unexpectedly
+2026-05-29 09:14:44 FAILED Background job sync-users exited with status 1
+2026-05-29 09:14:50 INFO Recovery workflow completed

@@ -1,4 +1,4 @@
-AWS S3 Public Access Check
+AWS S3 Public Access Block Check
 Bucket: example-bucket-name
 
 --------------------------------------------------
@@ -11,3 +11,4 @@ Bucket: example-bucket-name
 +--------------------------+---------------------+
 
 OK: public access block configuration was read successfully.
+Note: review bucket policy and ACLs separately for a full public access review.

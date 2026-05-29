@@ -10,7 +10,7 @@ setup() {
     'ERROR database connection retry failed' \
     'FAILED worker exited unexpectedly' \
     'CRITICAL queue depth high' \
-    'INFO done' > "$LOG_FILE"
+    'INFO done' >"$LOG_FILE"
 }
 
 @test "log_error_summary shows help" {

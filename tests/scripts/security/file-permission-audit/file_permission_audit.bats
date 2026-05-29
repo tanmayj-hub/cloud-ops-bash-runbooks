@@ -5,9 +5,9 @@ setup() {
   SCRIPT="${REPO_ROOT}/scripts/security/file-permission-audit/file_permission_audit.sh"
   AUDIT_DIR="${BATS_TEST_TMPDIR}/permission-audit"
   mkdir -p "$AUDIT_DIR"
-  printf 'debug\n' > "${AUDIT_DIR}/debug.conf"
+  printf 'debug\n' >"${AUDIT_DIR}/debug.conf"
   chmod 666 "${AUDIT_DIR}/debug.conf"
-  printf '#!/usr/bin/env bash\n' > "${AUDIT_DIR}/run-check.sh"
+  printf '#!/usr/bin/env bash\n' >"${AUDIT_DIR}/run-check.sh"
   chmod 755 "${AUDIT_DIR}/run-check.sh"
 }
 

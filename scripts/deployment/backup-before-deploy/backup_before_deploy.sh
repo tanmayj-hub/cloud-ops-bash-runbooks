@@ -39,6 +39,7 @@ main() {
   local backup_path
   local parent_dir
   local base_name
+  local collision_count=1
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -94,10 +95,16 @@ main() {
 
   timestamp="$(date +%Y%m%d-%H%M%S)"
   source_name="$(basename "$source_path")"
-  backup_name="${source_name}-${timestamp}.tar.gz"
+  backup_name="${source_name}-${timestamp}-$$.tar.gz"
   backup_path="${dest_path}/${backup_name}"
   parent_dir="$(dirname "$source_path")"
   base_name="$(basename "$source_path")"
+
+  while [[ -e "$backup_path" ]]; do
+    backup_name="${source_name}-${timestamp}-$$-${collision_count}.tar.gz"
+    backup_path="${dest_path}/${backup_name}"
+    collision_count=$((collision_count + 1))
+  done
 
   printf 'Backup Before Deploy\n'
   printf 'Source: %s\n' "$source_path"

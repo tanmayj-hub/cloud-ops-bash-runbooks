@@ -33,7 +33,7 @@ setup() {
 
   port_file="${BATS_TEST_TMPDIR}/tcp-port.txt"
   server_script="${BATS_TEST_TMPDIR}/tcp-server.py"
-  cat > "$server_script" <<'PY'
+  cat >"$server_script" <<'PY'
 import pathlib
 import socket
 import sys

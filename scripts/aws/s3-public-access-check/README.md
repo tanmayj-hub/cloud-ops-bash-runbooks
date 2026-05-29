@@ -1,4 +1,4 @@
-# AWS S3 Public Access Check
+# AWS S3 Public Access Block Check
 
 ## Role
 
@@ -6,7 +6,7 @@ Cloud Engineer / DevOps Engineer / Cloud Support
 
 ## Real-World Use Case
 
-Use this script during S3 security review or support triage to confirm whether bucket-level public access block settings are configured.
+Use this script during S3 security review or support triage to confirm whether bucket-level public access block settings are configured. It is a focused check, not a complete review of bucket exposure.
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ bash aws_s3_public_access_check.sh --bucket example-bucket-name
 ## Example Output
 
 ```text
-AWS S3 Public Access Check
+AWS S3 Public Access Block Check
 Bucket: example-bucket-name
 
 --------------------------------------------------
@@ -52,6 +52,7 @@ Bucket: example-bucket-name
 +--------------------------+---------------------+
 
 OK: public access block configuration was read successfully.
+Note: review bucket policy and ACLs separately for a full public access review.
 ```
 
 See `examples/example-output.txt` for a sample report.
@@ -67,13 +68,15 @@ See `examples/example-output.txt` for a sample report.
 - If access is denied, confirm `s3:GetBucketPublicAccessBlock` is allowed for the bucket.
 - If the bucket name is wrong, verify the exact bucket name with an approved inventory source.
 - If credentials are unavailable, use your approved AWS profile, SSO login, or role assumption process.
+- If you need a full public exposure review, inspect bucket policy, ACLs, access points, and website configuration separately.
 
 ## Safety Notes
 
 This script only uses read-only AWS CLI commands. It does not modify bucket policies, ACLs, public access block settings, encryption, logging, lifecycle rules, or objects.
+It also does not claim to replace a full S3 exposure review.
 
 Do not include real AWS account IDs, secrets, ARNs, bucket policies, or private data in examples or issues.
 
 ## Interview Explanation
 
-This script demonstrates safe cloud security validation: inspect S3 public access block settings, handle access denied clearly, and avoid making any changes to bucket configuration.
+This script demonstrates safe cloud security validation: inspect S3 public access block settings, state the scope clearly, handle access denied cleanly, and avoid making any changes to bucket configuration.

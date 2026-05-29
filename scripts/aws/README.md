@@ -9,4 +9,4 @@ Scripts in this folder use read-only operations unless reviewed, and examples mu
 | Folder | Purpose |
 | --- | --- |
 | `ec2-status-report/` | Generate a read-only EC2 instance status report. |
-| `s3-public-access-check/` | Check S3 bucket public access block configuration without modifying the bucket. |
+| `s3-public-access-check/` | Check S3 bucket public access block configuration without claiming a full ACL or bucket policy review. |

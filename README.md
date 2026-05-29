@@ -40,7 +40,7 @@ The focus is not clever shell tricks. The focus is practical operational work:
 | Deployment | Pre-deploy safety and service operations | Env validation, backups, guarded restarts |
 | Docker | Container inspection and cleanup planning | Container health, dry-run cleanup review |
 | Kubernetes | Namespace and pod visibility | Pod status, deployments, services, events |
-| AWS | Read-only cloud inventory and checks | EC2 status, S3 public access block review |
+| AWS | Read-only cloud inventory and checks | EC2 status, S3 public access block checks |
 | Security | Local security review | SSH failures, risky file permissions |
 
 ## Version 1 Script Catalog
@@ -64,27 +64,33 @@ The focus is not clever shell tricks. The focus is practical operational work:
 | 15 | Kubernetes | `scripts/kubernetes/pod-status-summary/k8s_pod_status_summary.sh` | Show pods not Running or Completed in a namespace. |
 | 16 | Kubernetes | `scripts/kubernetes/namespace-resource-check/k8s_namespace_resource_check.sh` | Show deployments, pods, services, and events. |
 | 17 | AWS | `scripts/aws/ec2-status-report/aws_ec2_status_report.sh` | Generate a read-only EC2 instance status report. |
-| 18 | AWS | `scripts/aws/s3-public-access-check/aws_s3_public_access_check.sh` | Check S3 public access block configuration. |
+| 18 | AWS | `scripts/aws/s3-public-access-check/aws_s3_public_access_check.sh` | Check S3 public access block configuration as one part of a broader public exposure review. |
 | 19 | Security | `scripts/security/failed-ssh-login-summary/failed_ssh_login_summary.sh` | Summarize failed SSH login attempts from auth logs. |
 | 20 | Security | `scripts/security/file-permission-audit/file_permission_audit.sh` | Report risky file permissions without changing them. |
 
 ## How To Run a Script
 
-Every script supports `--help`:
+Every script supports `--help` and is committed as executable:
 
 ```bash
-bash scripts/linux-admin/disk-usage-check/disk_usage_check.sh --help
+./scripts/linux-admin/disk-usage-check/disk_usage_check.sh --help
 ```
 
 Example runs:
 
 ```bash
-bash scripts/linux-admin/disk-usage-check/disk_usage_check.sh --threshold 80
-bash scripts/support-troubleshooting/log-error-summary/log_error_summary.sh --file /var/log/app.log --lines 50
-bash scripts/deployment/backup-before-deploy/backup_before_deploy.sh --source /opt/myapp --dest ./backups --dry-run
+./scripts/linux-admin/disk-usage-check/disk_usage_check.sh --threshold 80
+./scripts/support-troubleshooting/log-error-summary/log_error_summary.sh --file examples/sample-logs/app.log --lines 50
+./scripts/deployment/backup-before-deploy/backup_before_deploy.sh --source /opt/myapp --dest ./backups --dry-run
 ```
 
 Some scripts require local tools such as Docker, `kubectl`, AWS CLI, or `systemctl`. Check each script folder README for prerequisites and safety notes.
+
+Sample demo files are included under:
+
+- `examples/sample-logs/`
+- `examples/sample-configs/`
+- `examples/sample-outputs/`
 
 ## Quality Checks
 
@@ -122,6 +128,8 @@ bats tests/scripts/linux-admin/disk-usage-check/disk_usage_check.bats
 
 The current tests focus on safe local behavior and do not require real AWS, Docker, or Kubernetes access. GitHub Actions runs ShellCheck and Bats tests in CI.
 
+Before tagging a release, work through [docs/release-checklist.md](docs/release-checklist.md).
+
 ## Safety Note
 
 This repository should never include secrets, tokens, private keys, real AWS account IDs, private logs, customer data, or unsafe default behavior.
@@ -132,9 +140,7 @@ Most scripts are read-only. Scripts that can create or change something use safe
 
 - Add Bats coverage for the remaining scripts.
 - Add mock-based tests for AWS, Docker, Kubernetes, and `systemctl` workflows.
-- Add sample logs and configs for repeatable demos.
 - Add script output examples for common interview scenarios.
-- Add a release checklist for Version 1 tagging.
 - Consider packaging common test helpers once repeated test patterns stabilize.
 
 ## Portfolio and Interview Value

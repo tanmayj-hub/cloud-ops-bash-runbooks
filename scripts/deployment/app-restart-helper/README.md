@@ -12,7 +12,7 @@ Use this script when an application service must be restarted during a deploymen
 
 - Bash.
 - `systemctl`.
-- A Linux system that uses systemd.
+- A Linux system where systemd is actually available.
 - Permission to view and restart the target service.
 
 ## Usage
@@ -49,12 +49,12 @@ See `examples/example-output.txt` for a sample report.
 
 - `0` - Dry-run completed, restart completed, or user cancelled safely.
 - `1` - Restart was attempted but service is not active after restart.
-- `2` - Invalid input or `systemctl` unavailable.
+- `2` - Invalid input, `systemctl` unavailable, or systemd not available.
 - `3` - Restart command failed.
 
 ## Troubleshooting
 
-- If `systemctl` is unavailable, the system may not use systemd.
+- If `systemctl` exists but systemd is unavailable, you may be in WSL, a container, or a CI runner.
 - If restart fails, inspect service logs and unit configuration using approved operational procedures.
 - If the service is inactive after restart, verify dependencies, configuration, ports, and recent deployment changes.
 

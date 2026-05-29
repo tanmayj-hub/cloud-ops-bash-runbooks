@@ -11,7 +11,7 @@ Relevant scripts:
 | Script | Why It Matters |
 | --- | --- |
 | `scripts/aws/ec2-status-report/aws_ec2_status_report.sh` | Produces a read-only EC2 instance status report. |
-| `scripts/aws/s3-public-access-check/aws_s3_public_access_check.sh` | Checks S3 public access block settings without modifying buckets. |
+| `scripts/aws/s3-public-access-check/aws_s3_public_access_check.sh` | Checks S3 public access block settings as one safe step in a broader exposure review. |
 | `scripts/kubernetes/namespace-resource-check/k8s_namespace_resource_check.sh` | Reviews namespace resources for cloud-hosted workloads. |
 | `scripts/kubernetes/pod-status-summary/k8s_pod_status_summary.sh` | Highlights unhealthy or incomplete Kubernetes workloads. |
 | `scripts/support-troubleshooting/port-connectivity-check/port_connectivity_check.sh` | Validates basic application or network reachability. |

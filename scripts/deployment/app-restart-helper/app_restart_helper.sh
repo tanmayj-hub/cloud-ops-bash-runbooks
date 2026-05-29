@@ -20,13 +20,31 @@ Options:
 Exit codes:
   0  Dry-run completed, restart completed, or user cancelled safely.
   1  Restart attempted but service is not active after restart.
-  2  Invalid input or systemctl unavailable.
+  2  Invalid input, systemctl unavailable, or systemd unavailable.
   3  Restart command failed.
 
 Safety:
   Shows current status first. Dry-run does not restart. Normal mode asks for
   explicit confirmation before restart.
 USAGE
+}
+
+require_systemd() {
+  local systemctl_error
+
+  if ! command -v systemctl >/dev/null 2>&1; then
+    printf 'Error: systemctl is unavailable. This system may not use systemd.\n' >&2
+    return 2
+  fi
+
+  if ! systemctl_error="$(systemctl show-environment 2>&1 >/dev/null)"; then
+    printf 'Error: systemctl is installed, but systemd is not available on this system.\n' >&2
+    printf 'This can happen in WSL, containers, or CI runners.\n' >&2
+    if [[ -n "$systemctl_error" ]]; then
+      printf 'systemctl message: %s\n' "$(printf '%s\n' "$systemctl_error" | head -n 1)" >&2
+    fi
+    return 2
+  fi
 }
 
 print_service_status() {
@@ -74,8 +92,7 @@ main() {
     return 2
   fi
 
-  if ! command -v systemctl >/dev/null 2>&1; then
-    printf 'Error: systemctl is unavailable. This system may not use systemd.\n' >&2
+  if ! require_systemd; then
     return 2
   fi
 
